@@ -3,6 +3,11 @@
 > luis demo
 
 ## Build Setup
+Please create the following .env file in the current directory.
+``` bash
+# .env file. This env is setting REST API for Azure LUIS.
+LUIS_API='https://XXXXXX/XXXX/XXXX='
+```
 
 ``` bash
 # install dependencies
