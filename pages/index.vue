@@ -1,6 +1,17 @@
 <template>
   <section>
-    <h1 class="header">{{ title }}</h1>
+    <h1 class="header">{{ title }}</h1> 
+    <div>
+      <h2>徳島県について聞いてみよう！</h2>
+      (多分)理解できる質問集
+      <ul>
+        <li>徳島県について</li>
+        <li>徳島県の行き方</li>
+        <li>徳島県について</li>
+        <li>かずら橋について</li>
+        <li>小便小僧について</li>
+      </ul>
+    </div>
     <div>
       <button class="square_btn" @click="isChatOpen=true">チャットする！</button>
       <beautiful-chat
@@ -97,37 +108,40 @@ export default class extends Vue {
     this.sendMessage(msg)
   }
   luisResult(result: any): void {
-    let answer = '理解できませんでした'
+    let msg = ''
+/*
+{intent: "Tokushima", score: 0.433965236}
+{intent: "HowToGetPlace", score: 0.137868986}
+{intent: "Kazurabashi", score: 0.009012208}
+{intent: "Shonbenkozou", score: 0.00691728434}
+{intent: "None", score: 0.00683180755}
+*/
     console.log('result', result)
     if ('topScoringIntent' in result) {
-        let info = result.topScoringIntent
-        if ( info.score >= 0.1 ) {
-            if (info.intent === 'TestDrive') {
-                answer = "試乗できる車は" + "\n" +
-                    "・エスティマ" +　"\n" +
-                    "・カローラ" +　"\n" +
-                    "・タント" +　"\n" +
-                    "です"
-            } else if (info.intent === 'WantEstimate') {
-                answer = "お見積りは1億円です。"
-            } else if (info.intent === 'UseMonitor') {
-                answer = "モニターのお問い合わせはこちらです。\n電話番号: XXXX-XXXX-XXXX"
-            } else if (info.intent === 'CheckCarStatus') {
-                answer = "調子の良い車は エスティマ です"
-            } else if (info.intent === 'PayKnow') {
-                answer = "お支払額は以下のとおりです。" + "\n" +
-                    "・エスティマ: 400万円" +　"\n" +
-                    "・カローラ: 380万円" +　"\n" +
-                    "・タント: 100万円" +　"\n"
-            } else if (info.intent === 'Redmine') {
-                answer = "社内ルールが書かれたURLを教えるね。" + "\n" + 
-                    "http://redmine3.genio.co.jp/projects/geniocom/wiki" 
-            } else {
-                answer = "理解できませんでした。"
-            }
-        } else {
-            answer = "その質問は学習されていません。LUISを賢くしてください。"
-        }
+      let info:any= result.topScoringIntent
+      // 認識率20%以上なら処理する(甘め)
+      if ( info.score >= 0.2 ) {
+          let url:string = 'https://www.google.co.jp/'
+          if (info.intent === 'Tokushima') {
+            msg = 'OK！徳島県の地図をだしたから見てね！'
+            url = 'https://www.google.co.jp/maps/place/%E5%BE%B3%E5%B3%B6%E7%9C%8C/@34.1410563,133.7733708,8z/data=!4m5!3m4!1s0x35524d5baed737b3:0xfddd63f964cf310c!8m2!3d34.0657179!4d134.5593601'
+          } else if (info.intent === 'HowToGetPlace') {
+            msg = 'OK！徳島県の行き方のサイトを案内したから見てね！'
+            url = 'https://www.awanavi.jp/access/'
+          } else if (info.intent === 'Kazurabashi') {
+            msg = 'OK！かずら橋の観光サイトを案内したから見てね！'
+            url = 'http://miyoshinavi.jp/02miru/detail.php?genr=101&uid=SS000048'
+          } else if (info.intent === 'Shonbenkozou') {
+            msg = 'OK！小便小僧の観光サイトを案内したから見てね！'
+            url = 'https://www.shikoku.gr.jp/spot/696'
+          } else {
+            msg = 'うーん....とりあえずGoogle開いたからそこから検索してね！'
+          }
+          window.open(url, '_blank')
+      } else {
+          msg = "ごめんなさい！質問が分からないんです。もっと徳島県について勉強します！"
+      }
+      this.luisMessage(msg)
     }
   }
 }

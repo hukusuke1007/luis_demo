@@ -16,7 +16,7 @@ text,intent,Tokushima:City,Tokushima:Spot,Tokushima:Road
 しょんべん,Shonbenkozou,,しょんべん,
 しょんべんこぞう,Shonbenkozou,,しょんべんこぞう,
 小便小僧,Shonbenkozou,,小便小僧,
-徳島へはどうやってくいくん,HowToGetPlace,徳島,,どうやっていくん
+徳島へはどうやっていくん,HowToGetPlace,徳島,,どうやっていくん
 徳島の行き方,HowToGetPlace,徳島,,行き方
 どうやっていくん,HowToGetPlace,,,どうやっていくん
 行き方,HowToGetPlace,,,行き方
