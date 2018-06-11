@@ -19,8 +19,8 @@ const host =
   process.env.npm_package_config_nuxt_host ||
   "localhost"
 
-// 追加.
-const basePath = process.env.DEPLOY_ENV === 'GH_PAGES' ? '/nuxt-ts-plain/' : '/'
+// 追加. ※pathはご自身のプロジェクト名にすること！
+const basePath = process.env.DEPLOY_ENV === 'GH_PAGES' ? '/luis_demo/' : '/'
 const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
   router: {
     base: basePath
