@@ -76,6 +76,7 @@ module.exports = {
   */
   css: ["~/assets/css/main.css"],
   build: {},
+  // 追加.
   modules: [
     "@nuxtjs/axios",
     '@nuxtjs/dotenv',
