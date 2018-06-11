@@ -41,15 +41,14 @@ export default class extends Vue {
   text: string = ""
 
   // ■ Luis API
-  luisApi:string = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/0623e68e-1895-4e7e-91fb-baaa6ac546e0?subscription-key=1316ccc2a86b4066adcd78f0900a7bd1&verbose=true&timezoneOffset=0&q='
-
+  luisApi:any = process.env.LUIS_API
 
   // ■ Method.
   created () {
     console.log('created before DOM')
   }
   mounted () {
-    console.log('mounted after DOM')
+    console.log('mounted after DOM', process.env.LUIS_API)
   }
   sendMessage (msg: any) {
     console.log('sendMessage', msg)

@@ -37,7 +37,7 @@ module.exports = {
       `http://${host}:${port}`
   },
   head: {
-    title: "tt1",
+    title: "Azure LUIS demo",
     meta: [
       { charset: "utf-8" },
       {
@@ -78,6 +78,7 @@ module.exports = {
   build: {},
   modules: [
     "@nuxtjs/axios",
+    '@nuxtjs/dotenv',
     "~/modules/typescript.js"
   ],
   axios: {}
