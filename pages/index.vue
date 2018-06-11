@@ -3,14 +3,16 @@
     <h1 class="header">{{ title }}</h1> 
     <div>
       <h2>徳島県について聞いてみよう！</h2>
-      (多分)理解できる質問集
+      (多分)理解できる質問
       <ul>
         <li>徳島県について</li>
         <li>徳島県の行き方</li>
-        <li>徳島県について</li>
         <li>かずら橋について</li>
         <li>小便小僧について</li>
       </ul>
+      <div class="attention">
+      ※利用の際はブラウザのポップアップを「許可」してください。
+      </div>
     </div>
     <div>
       <button class="square_btn" @click="isChatOpen=true">チャットする！</button>
@@ -109,13 +111,6 @@ export default class extends Vue {
   }
   luisResult(result: any): void {
     let msg = ''
-/*
-{intent: "Tokushima", score: 0.433965236}
-{intent: "HowToGetPlace", score: 0.137868986}
-{intent: "Kazurabashi", score: 0.009012208}
-{intent: "Shonbenkozou", score: 0.00691728434}
-{intent: "None", score: 0.00683180755}
-*/
     console.log('result', result)
     if ('topScoringIntent' in result) {
       let info:any= result.topScoringIntent
@@ -166,5 +161,10 @@ export default class extends Vue {
     -webkit-transform: translateY(4px);
     transform: translateY(4px);
     border-bottom: none;
+}
+.attention {
+  color: red;
+  font-size: 0.8em;
+  margin-bottom: 8px;
 }
 </style>
